@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import Link from 'next/link';
 
 export default function Appointment() {
     const [gender, setGender] = useState("");
@@ -8,58 +9,58 @@ export default function Appointment() {
     const [videoSrc, setVideoSrc] = useState(null);
 
 
-  useEffect(() => {
-    // Bootstrap modal event listeners to clear videoSrc on modal hide
-    const modal = document.getElementById("videoModal");
+    useEffect(() => {
+        // Bootstrap modal event listeners to clear videoSrc on modal hide
+        const modal = document.getElementById("videoModal");
 
-    function handleHide() {
-      setVideoSrc(null);
+        function handleHide() {
+            setVideoSrc(null);
+        }
+
+        if (modal) {
+            modal.addEventListener("hidden.bs.modal", handleHide);
+        }
+
+        return () => {
+            if (modal) {
+                modal.removeEventListener("hidden.bs.modal", handleHide);
+            }
+        };
+    }, []);
+
+    // Handler to open modal and set video src from button data attribute
+    function handleVideoOpen(e) {
+        const src = e.currentTarget.getAttribute("data-src");
+        setVideoSrc(src);
     }
 
-    if (modal) {
-      modal.addEventListener("hidden.bs.modal", handleHide);
-    }
-
-    return () => {
-      if (modal) {
-        modal.removeEventListener("hidden.bs.modal", handleHide);
-      }
-    };
-  }, []);
-
-  // Handler to open modal and set video src from button data attribute
-  function handleVideoOpen(e) {
-    const src = e.currentTarget.getAttribute("data-src");
-    setVideoSrc(src);
-  }
-
-  return (
-    <main>
-  {/* Header Start */}
-  <div className="container-fluid bg-breadcrumb">
-    <div className="container text-center py-5" style={{ maxWidth: 900 }}>
-      <h3
-        className="text-white display-3 mb-4 wow fadeInDown"
-        data-wow-delay="0.1s"
-      >
-        Book Appointment
-      </h3>
-      <ol
-        className="breadcrumb justify-content-center mb-0 wow fadeInDown"
-        data-wow-delay="0.3s"
-      >
-        <li className="breadcrumb-item">
-          <a href="index.html">Home</a>
-        </li>
-        <li className="breadcrumb-item">
-          <a href="#">Pages</a>
-        </li>
-        <li className="breadcrumb-item active text-primary">Appointment</li>
-      </ol>
-    </div>
-  </div>
-  {/* Header End */}
-  {/* Book Appointment Start */}
+    return (
+        <main>
+            {/* Header Start */}
+            <div className="container-fluid bg-breadcrumb">
+                <div className="container text-center py-5" style={{ maxWidth: 900 }}>
+                    <h3
+                        className="text-white display-3 mb-4 wow fadeInDown"
+                        data-wow-delay="0.1s"
+                    >
+                        Book Appointment
+                    </h3>
+                    <ol
+                        className="breadcrumb justify-content-center mb-0 wow fadeInDown"
+                        data-wow-delay="0.3s"
+                    >
+                        <li className="breadcrumb-item">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li className="breadcrumb-item">
+                            <a href="#">Pages</a>
+                        </li>
+                        <li className="breadcrumb-item active text-primary">Appointment</li>
+                    </ol>
+                </div>
+            </div>
+            {/* Header End */}
+            {/* Book Appointment Start */}
             <div className="container-fluid appointment py-5">
                 <div className="container py-5">
                     <div className="row g-5 align-items-center">
@@ -99,12 +100,9 @@ export default function Appointment() {
                                                 </p>
                                             </div>
                                             <div className="text-start mb-4">
-                                                <a
-                                                    href="/"
-                                                    className="btn btn-primary rounded-pill text-white py-3 px-5"
-                                                >
+                                                <Link href="/" className="btn btn-primary rounded-pill text-white py-3 px-5">
                                                     More Details
-                                                </a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

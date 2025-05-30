@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 export default function AboutPage() {
     return (
@@ -12,14 +13,15 @@ export default function AboutPage() {
                         className="text-white display-3 mb-4 wow fadeInDown"
                         data-wow-delay="0.1s"
                     >
-                       Our Features
+                        Our Features
                     </h3>
                     <ol
                         className="breadcrumb justify-content-center mb-0 wow fadeInDown"
                         data-wow-delay="0.3s"
                     >
+
                         <li className="breadcrumb-item">
-                            <a href="/">Home</a>
+                            <Link href="/">Home</Link>
                         </li>
                         <li className="breadcrumb-item">
                             <a href="#">Pages</a>
