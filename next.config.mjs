@@ -4,7 +4,6 @@ const nextConfig = {
   images: {
     domains: ['images.deccanchronicle.com'],
   },
-  output: 'export', // 👈 Required for `next export`
 };
 
 export default nextConfig;
